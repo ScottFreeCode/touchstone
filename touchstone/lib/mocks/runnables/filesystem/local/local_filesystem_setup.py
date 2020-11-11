@@ -17,4 +17,8 @@ class LocalFilesystemSetup(IFilesystemSetup):
             subprocess.run(['chmod', '-R', '777', self.__files_path])
 
     def delete_defaults(self):
-        shutil.rmtree(self.__files_path)
+        try:
+            shutil.rmtree(self.__files_path)
+        except FileNotFoundError:
+            print('File not found error')
+            pass
