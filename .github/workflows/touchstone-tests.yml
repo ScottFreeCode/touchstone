@@ -5,6 +5,7 @@ on:
     branches:
       - 'develop'
       - 'release/**'
+      - 'test/spark-failure'
 
 jobs:
   build:
@@ -18,14 +19,14 @@ jobs:
       - name: Install dependencies
         run: |
           pip install .
-      - name: Run Touchstone Tests
-        working-directory: ./touchstone-tests
-        run: |
-          touchstone run
-      - name: Run Java Spring example Touchstone Tests
-        working-directory: ./examples/java-spring
-        run: |
-          touchstone run
+      #      - name: Run Touchstone Tests
+      #        working-directory: ./touchstone-tests
+      #        run: |
+      #          touchstone run
+      #      - name: Run Java Spring example Touchstone Tests
+      #        working-directory: ./examples/java-spring
+      #        run: |
+      #          touchstone run
       - name: Run Python Spark example Touchstone Tests
         working-directory: ./examples/python-spark
         run: |
