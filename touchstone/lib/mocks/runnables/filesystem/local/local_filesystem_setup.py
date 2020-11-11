@@ -14,7 +14,7 @@ class LocalFilesystemSetup(IFilesystemSetup):
         self.delete_defaults()
         shutil.copytree(self.__base_files_path, self.__files_path)
         if os.name is not 'nt':
-            subprocess.run(['chmod', '-R', '+w', self.__files_path])
+            subprocess.run(['chmod', '777', self.__files_path])
 
     def delete_defaults(self):
         shutil.rmtree(self.__files_path, ignore_errors=True)
