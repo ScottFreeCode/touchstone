@@ -13,12 +13,15 @@ class LocalFilesystemSetup(IFilesystemSetup):
     def reset(self):
         self.delete_defaults()
         shutil.copytree(self.__base_files_path, self.__files_path)
-        if os.name is not 'nt':
-            subprocess.run(['chmod', '-R', '777', self.__files_path])
+        self.__set_permissions()
 
     def delete_defaults(self):
+        self.__set_permissions()
         try:
             shutil.rmtree(self.__files_path)
         except FileNotFoundError:
-            print('File not found error')
             pass
+
+    def __set_permissions(self):
+        if os.name is not 'nt':
+            subprocess.run(['chmod', '-R', '777', self.__files_path], stdout=subprocess.DEVNULL)
