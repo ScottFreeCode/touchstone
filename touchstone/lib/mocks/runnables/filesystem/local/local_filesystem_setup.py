@@ -24,4 +24,4 @@ class LocalFilesystemSetup(IFilesystemSetup):
 
     def __set_permissions(self):
         if os.name is not 'nt':
-            subprocess.run(['chmod', '-R', '777', self.__files_path], stdout=subprocess.DEVNULL)
+            subprocess.run(['chmod', '-R', '777', self.__files_path])
